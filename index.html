@@ -1,0 +1,121 @@
+<!-- 1. 解决子目录 JS 内部相对路径的自动映射 -->
+<script>
+    (function() {
+        function fixSubpath(path) {
+            if (!path || typeof path !== 'string') return path;
+            if (/^(https?:|\/|data:|blob:|\.\.\/|body\/|title\/|head_foot\/)/.test(path)) {
+                return path;
+            }
+            // 1. title 目录专属素材
+            if (/^(DNA_1|DNA_2|protein|title)\.png$/.test(path)) {
+                return 'title/' + path;
+            }
+            // 2. head_foot 目录专属素材
+            if (/^(STING_logo_Blue|xmu_1|xmu-china|[1-5])\.png$/.test(path)) {
+                return 'head_foot/' + path;
+            }
+            // 3. body 目录专属素材 (map.svg, STING.svg, Video.svg, members/* 等)
+            if (/^(map|STING|Video)\.svg$/.test(path) ||
+                /^(members|student_leaders|advisors|instructors|PIs)\//.test(path)) {
+                return 'body/' + path;
+            }
+            return path;
+        }
+
+        // 拦截 img.src 动态赋值
+        const imgDesc = Object.getOwnPropertyDescriptor(HTMLImageElement.prototype, 'src');
+        Object.defineProperty(HTMLImageElement.prototype, 'src', {
+            set(val) { imgDesc.set.call(this, fixSubpath(val)); },
+            get() { return imgDesc.get.call(this); }
+        });
+
+        // 拦截 setAttribute('src', ...)
+        const origSetAttr = Element.prototype.setAttribute;
+        Element.prototype.setAttribute = function(name, val) {
+            if (name && name.toLowerCase() === 'src') val = fixSubpath(val);
+            return origSetAttr.call(this, name, val);
+        };
+
+        // 拦截字符串形式注入的图片 (如 head_foot.js 的 innerHTML/insertAdjacentHTML)
+        const origInsertAdjacent = Element.prototype.insertAdjacentHTML;
+        Element.prototype.insertAdjacentHTML = function(pos, text) {
+            if (typeof text === 'string') {
+                text = text.replace(/src="([^"]+)"/g, (match, src) => 'src="' + fixSubpath(src) + '"');
+            }
+            return origInsertAdjacent.call(this, pos, text);
+        };
+    })();
+</script>
+
+<!-- 2. 引入各个模块的 CSS 样式文件 -->
+<link rel="stylesheet" href="head_foot/head_foot.css">
+<link rel="stylesheet" href="title/title.css">
+<link rel="stylesheet" href="body/body1.css">
+<link rel="stylesheet" href="body/body2.css">
+
+<!-- 3. 宿主协调层：修复 title.css 的 overflow: hidden 与 grid-container 遮挡层级 -->
+<style>
+    /* 强制覆盖 title.css 中的 height: 100% 和 overflow: hidden，恢复整页正常滚动 */
+    html, body {
+        height: auto !important;
+        min-height: 100% !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        position: relative;
+    }
+
+    /* 顶部大标题区域：占据第一屏视口高度，作为首屏流动内容 */
+    .grid-container {
+        position: relative !important;
+        inset: auto !important;
+        width: 100% !important;
+        height: 100vh !important;
+        z-index: 1 !important;
+        pointer-events: auto !important;
+        overflow: hidden !important;
+    }
+
+    /* 页面主体区域紧贴在 title 后面 */
+    .map-container {
+        position: relative !important;
+        width: 100% !important;
+        z-index: 2 !important;
+        clear: both;
+    }
+
+    /* 页脚确保在主体最底部流动展示 */
+    footer {
+        position: relative !important;
+        z-index: 40 !important;
+        clear: both;
+    }
+</style>
+
+
+<!-- 首屏大标题 Canvas 容器 (title.js 所需挂载点) -->
+<div class="grid-container">
+    <canvas id="gridCanvas"></canvas>
+</div>
+
+<!-- 4. 引入各个模块的 JS 逻辑文件 -->
+<!-- 先加载 title 建立顶屏 -->
+<script src="title/title.js"></script>
+
+<!-- body1.js 会执行 document.body.prepend(mapContainer)，我们通过后续脚本调整其顺序 -->
+<script src="body/body1.js"></script>
+<script src="body/body2.js"></script>
+
+<!-- 调整节点次序：确保 mapContainer 严格排在 grid-container 之后，页脚排在最末 -->
+<script>
+    (function adjustOrder() {
+        const titleEl = document.querySelector('.grid-container');
+        const mapEl = document.querySelector('.map-container');
+        if (titleEl && mapEl && titleEl.nextElementSibling !== mapEl) {
+            // 将 map-container 移动到 title 后面
+            titleEl.insertAdjacentElement('afterend', mapEl);
+        }
+    })();
+</script>
+
+<!-- 最后加载页眉页脚 (页眉插在 body 最顶层 fixed 悬浮，页脚 append 挂在 body 底部) -->
+<script src="head_foot/head_foot.js"></script>
