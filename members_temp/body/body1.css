@@ -1,0 +1,1538 @@
+@import url('https://fonts.googleapis.com/css2?family=Kaisei+Tokumin:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kite+One&display=swap');
+
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+html, body {
+width: 100%;
+min-height: 100%;
+background-color: #ffffff;
+/* 开启垂直滚动，禁止横向溢出 */
+overflow-x: hidden;
+overflow-y: auto;
+}
+
+.map-container {
+       position: relative !important;
+       width: 100% !important;
+       z-index: 2 !important;
+       clear: both;
+       background-color: #f3f7f8 !important;
+       margin-top: -50px !important; 
+   }
+/* 底图长图样式：宽度铺满，高度自适应撑开页面纵向滚动距离 */
+.map-underlay {
+display: block;
+width: 100%;
+height: auto;
+position: relative;
+z-index: 0;
+pointer-events: none;
+}
+
+/* STING.svg */
+.sting-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 5.4%;             /* 位于地图垂直方向 10% 处 */
+right: 5%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 18%;           /* 宽度占地图总宽的 30% */
+max-width: 480px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+}
+
+/* Video.svg 贴图样式 */
+.video-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 9%;             /* 位于地图垂直方向 10% 处 */
+right: 0%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 100%;           /* 宽度占地图总宽的 30% */
+height: auto;         /* 保持原始宽高比例 */
+}
+
+/* members/title.svg */
+.members-title-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 21%;             /* 位于地图垂直方向 10% 处 */
+right: 35.5%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 23%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+}
+
+/* members/card.svg  */
+.members-card-overlay-1 {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 24.2%;             /* 位于地图垂直方向 10% 处 */
+left: 5%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 19%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+}
+
+.members-card-overlay-1 .members-card-bg1 {
+display: block;
+width: 100%;
+height: auto;
+}
+
+.members-card-overlay-1 .CAI_Chenlin {
+position: absolute;   /* 相对于 card-1 容器定位 */
+top: 19%;             /* 根据你 SVG 卡片头像框的具体位置微调此百分比 */
+left: 17%;            /* 根据你 SVG 卡片头像框的具体位置微调此百分比 */
+width: 60%;           /* 头像相对卡片尺寸的占比 */
+height: auto;
+pointer-events: none; /* 避免遮挡卡片点击事件 */
+z-index: 1;           /* 位于卡片底图上方 */
+}
+
+.members-card-overlay-1 .CAI_Chenlin-text {
+position: absolute;
+bottom: 18%;          
+left: 18%;           
+color: #243A4F;
+font-family: "Kaisei Tokumin";
+font-size: 24px;
+font-style: normal;
+font-weight: 700;
+line-height: 25px; 
+letter-spacing: -0.364px;
+width: 60.884px;
+height: 29.342px;
+transform: rotate(-4.138deg);        
+z-index: 2;          
+}
+
+/* members/card.svg  */
+.members-card-overlay-2 {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 23.7%;             /* 位于地图垂直方向 10% 处 */
+left: 50%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 18%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+/* 设置旋转角度 */
+transform: rotate(-6deg);
+transform-origin: center center;
+}
+
+.members-card-overlay-2 .members-card-bg2 {
+display: block;
+width: 100%;
+height: auto;
+}
+
+.members-card-overlay-2 .CHEN_Zaiyang {
+position: absolute;   /* 相对于 card-1 容器定位 */
+top: 17%;             /* 根据你 SVG 卡片头像框的具体位置微调此百分比 */
+left: 17%;            /* 根据你 SVG 卡片头像框的具体位置微调此百分比 */
+width: 62%;           /* 头像相对卡片尺寸的占比 */
+height: auto;
+pointer-events: none; /* 避免遮挡卡片点击事件 */
+z-index: 1;           /* 位于卡片底图上方 */
+}
+
+.members-card-overlay-2 .CHEN_Zaiyang-text {
+position: absolute;
+bottom: 19%;          
+left: 12%;           
+color: #243A4F;
+font-family: "Kaisei Tokumin";
+font-size: 24px;
+font-style: normal;
+font-weight: 700;
+line-height: 25px; 
+letter-spacing: -0.364px;
+width: 60.884px;
+height: 29.342px;
+transform: rotate(2deg);        
+z-index: 2;          
+}
+
+/* members/card.svg  */
+.members-card-overlay-3 {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 25.3%;             /* 位于地图垂直方向 10% 处 */
+right: 7%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 18%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+/* 设置旋转角度 */
+transform: rotate(8deg);
+transform-origin: center center;
+}
+
+.members-card-overlay-3 .members-card-bg3 {
+display: block;
+width: 100%;
+height: auto;
+}
+
+.members-card-overlay-3 .GAO_Mandi {
+position: absolute;   /* 相对于 card-1 容器定位 */
+top: 15%;             /* 根据你 SVG 卡片头像框的具体位置微调此百分比 */
+left: 17%;            /* 根据你 SVG 卡片头像框的具体位置微调此百分比 */
+width: 68%;           /* 头像相对卡片尺寸的占比 */
+height: auto;
+pointer-events: none; /* 避免遮挡卡片点击事件 */
+z-index: 1;           /* 位于卡片底图上方 */
+}
+
+.members-card-overlay-3 .GAO_Mandi-text {
+position: absolute;
+bottom: 19%;          
+left: 12%;           
+color: #243A4F;
+font-family: "Kaisei Tokumin";
+font-size: 24px;
+font-style: normal;
+font-weight: 700;
+line-height: 25px; 
+letter-spacing: -0.364px;
+width: 60.884px;
+height: 29.342px;
+transform: rotate(2deg);        
+z-index: 2;          
+}
+
+/* members/card.svg  */
+.members-card-overlay-4 {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 27.2%;             /* 位于地图垂直方向 10% 处 */
+left: 27%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 18%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+/* 设置旋转角度 */
+transform: rotate(2deg);
+transform-origin: center center;
+}
+
+.members-card-overlay-4 .members-card-bg4 {
+display: block;
+width: 100%;
+height: auto;
+}
+
+.members-card-overlay-4 .GUO_Junhong {
+position: absolute;   /* 相对于 card-1 容器定位 */
+top: 13%;             /* 根据你 SVG 卡片头像框的具体位置微调此百分比 */
+left: 14%;            /* 根据你 SVG 卡片头像框的具体位置微调此百分比 */
+width: 70%;           /* 头像相对卡片尺寸的占比 */
+height: auto;
+pointer-events: none; /* 避免遮挡卡片点击事件 */
+z-index: 1;           /* 位于卡片底图上方 */
+}
+
+.members-card-overlay-4 .GUO_Junhong-text {
+position: absolute;
+bottom: 19%;          
+left: 12%;           
+color: #243A4F;
+font-family: "Kaisei Tokumin";
+font-size: 24px;
+font-style: normal;
+font-weight: 700;
+line-height: 25px; 
+letter-spacing: -0.364px;
+width: 60.884px;
+height: 29.342px;
+transform: rotate(2deg);        
+z-index: 2;          
+}
+
+/* members/card.svg  */
+.members-card-overlay-5 {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 29.3%;             /* 位于地图垂直方向 10% 处 */
+right: 27%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 18%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+/* 设置旋转角度 */
+transform: rotate(-4deg);
+transform-origin: center center;
+}
+
+.members-card-overlay-5 .members-card-bg5 {
+display: block;
+width: 100%;
+height: auto;
+}
+
+.members-card-overlay-5 .LU_Yuzhi {
+position: absolute;   /* 相对于 card-1 容器定位 */
+top: 16%;             /* 根据你 SVG 卡片头像框的具体位置微调此百分比 */
+left: 16%;            /* 根据你 SVG 卡片头像框的具体位置微调此百分比 */
+width: 73%;           /* 头像相对卡片尺寸的占比 */
+height: auto;
+pointer-events: none; /* 避免遮挡卡片点击事件 */
+z-index: 1;           /* 位于卡片底图上方 */
+}
+
+.members-card-overlay-5 .LU_Yuzhi-text {
+position: absolute;
+bottom: 19%;          
+left: 12%;           
+color: #243A4F;
+font-family: "Kaisei Tokumin";
+font-size: 24px;
+font-style: normal;
+font-weight: 700;
+line-height: 25px; 
+letter-spacing: -0.364px;
+width: 60.884px;
+height: 29.342px;
+transform: rotate(2deg);        
+z-index: 2;          
+}
+
+/* members/card.svg  */
+.members-card-overlay-6 {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 31%;             /* 位于地图垂直方向 10% 处 */
+right: 4%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 19%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+/* 设置旋转角度 */
+transform: rotate(6deg);
+transform-origin: center center;
+}
+
+.members-card-overlay-6 .members-card-bg6 {
+display: block;
+width: 100%;
+height: auto;
+}
+
+.members-card-overlay-6 .LI_Wenyu {
+position: absolute;   /* 相对于 card-1 容器定位 */
+top: 22%;             /* 根据你 SVG 卡片头像框的具体位置微调此百分比 */
+left: 25%;            /* 根据你 SVG 卡片头像框的具体位置微调此百分比 */
+width: 48%;           /* 头像相对卡片尺寸的占比 */
+height: auto;
+pointer-events: none; /* 避免遮挡卡片点击事件 */
+z-index: 1;           /* 位于卡片底图上方 */
+}
+
+.members-card-overlay-6 .LI_Wenyu-text {
+position: absolute;
+bottom: 18%;          
+left: 18%;           
+color: #243A4F;
+font-family: "Kaisei Tokumin";
+font-size: 24px;
+font-style: normal;
+font-weight: 700;
+line-height: 25px; 
+letter-spacing: -0.364px;
+width: 60.884px;
+height: 29.342px;
+transform: rotate(-4.138deg);        
+z-index: 2;          
+}
+
+/* members/card.svg  */
+.members-card-overlay-7 {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 30.8%;             /* 位于地图垂直方向 10% 处 */
+left: 4%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 18%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+/* 设置旋转角度 */
+transform: rotate(4deg);
+transform-origin: center center;
+}
+
+.members-card-overlay-7 .members-card-bg7 {
+display: block;
+width: 100%;
+height: auto;
+}
+
+.members-card-overlay-7 .LIN_Zhijun {
+position: absolute;   /* 相对于 card-1 容器定位 */
+top: 17%;             /* 根据你 SVG 卡片头像框的具体位置微调此百分比 */
+left: 16%;            /* 根据你 SVG 卡片头像框的具体位置微调此百分比 */
+width: 65%;           /* 头像相对卡片尺寸的占比 */
+height: auto;
+pointer-events: none; /* 避免遮挡卡片点击事件 */
+z-index: 1;           /* 位于卡片底图上方 */
+}
+
+.members-card-overlay-7 .LIN_Zhijun-text {
+position: absolute;
+bottom: 19%;          
+left: 12%;           
+color: #243A4F;
+font-family: "Kaisei Tokumin";
+font-size: 24px;
+font-style: normal;
+font-weight: 700;
+line-height: 25px; 
+letter-spacing: -0.364px;
+width: 60.884px;
+height: 29.342px;
+transform: rotate(2deg);        
+z-index: 2;          
+}
+
+/* members/card.svg  */
+.members-card-overlay-8 {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 32%;             /* 位于地图垂直方向 10% 处 */
+left: 29%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 19%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+/* 设置旋转角度 */
+transform: rotate(-4deg);
+transform-origin: center center;
+}
+
+.members-card-overlay-8 .members-card-bg8 {
+display: block;
+width: 100%;
+height: auto;
+}
+
+.members-card-overlay-8 .LI_Wanxin {
+position: absolute;   /* 相对于 card-1 容器定位 */
+top: 10%;             /* 根据你 SVG 卡片头像框的具体位置微调此百分比 */
+left: 13%;            /* 根据你 SVG 卡片头像框的具体位置微调此百分比 */
+width: 70%;           /* 头像相对卡片尺寸的占比 */
+height: auto;
+pointer-events: none; /* 避免遮挡卡片点击事件 */
+z-index: 1;           /* 位于卡片底图上方 */
+}
+
+.members-card-overlay-8 .LI_Wanxin-text {
+position: absolute;
+bottom: 18%;          
+left: 18%;           
+color: #243A4F;
+font-family: "Kaisei Tokumin";
+font-size: 24px;
+font-style: normal;
+font-weight: 700;
+line-height: 25px; 
+letter-spacing: -0.364px;
+width: 60.884px;
+height: 29.342px;
+transform: rotate(-4.138deg);        
+z-index: 2;          
+}
+
+/* members/card.svg  */
+.members-card-overlay-9 {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 35.3%;             /* 位于地图垂直方向 10% 处 */
+right: 29.5%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 18%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+/* 设置旋转角度 */
+transform: rotate(4deg);
+transform-origin: center center;
+}
+
+.members-card-overlay-9 .members-card-bg9 {
+display: block;
+width: 100%;
+height: auto;
+}
+
+.members-card-overlay-9 .REN_Moye {
+position: absolute;   /* 相对于 card-1 容器定位 */
+top: 17%;             /* 根据你 SVG 卡片头像框的具体位置微调此百分比 */
+left: 17%;            /* 根据你 SVG 卡片头像框的具体位置微调此百分比 */
+width: 60%;           /* 头像相对卡片尺寸的占比 */
+height: auto;
+pointer-events: none; /* 避免遮挡卡片点击事件 */
+z-index: 1;           /* 位于卡片底图上方 */
+}
+
+.members-card-overlay-9 .REN_Moye-text {
+position: absolute;
+bottom: 19%;          
+left: 12%;           
+color: #243A4F;
+font-family: "Kaisei Tokumin";
+font-size: 24px;
+font-style: normal;
+font-weight: 700;
+line-height: 25px; 
+letter-spacing: -0.364px;
+width: 60.884px;
+height: 29.342px;
+transform: rotate(2deg);        
+z-index: 2;          
+}
+
+/* members/card.svg  */
+.members-card-overlay-10 {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 36%;             /* 位于地图垂直方向 10% 处 */
+left: 8%;           /* 位于地图水平方向 20% 处 */
+z-index: 3;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 19%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+/* 设置旋转角度 */
+transform: rotate(0deg);
+transform-origin: center center;
+}
+
+.members-card-overlay-10 .members-card-bg10 {
+display: block;
+width: 100%;
+height: auto;
+}
+
+.members-card-overlay-10 .WANG_Kexin {
+position: absolute;   /* 相对于 card-1 容器定位 */
+top: 17%;             /* 根据你 SVG 卡片头像框的具体位置微调此百分比 */
+left: 17%;            /* 根据你 SVG 卡片头像框的具体位置微调此百分比 */
+width: 65%;           /* 头像相对卡片尺寸的占比 */
+height: auto;
+pointer-events: none; /* 避免遮挡卡片点击事件 */
+z-index: 1;           /* 位于卡片底图上方 */
+}
+
+.members-card-overlay-10 .WANG_Kexin-text {
+position: absolute;
+bottom: 18%;          
+left: 18%;           
+color: #243A4F;
+font-family: "Kaisei Tokumin";
+font-size: 24px;
+font-style: normal;
+font-weight: 700;
+line-height: 25px; 
+letter-spacing: -0.364px;
+width: 60.884px;
+height: 29.342px;
+transform: rotate(-4.138deg);        
+z-index: 2;          
+}
+
+/* members/card.svg  */
+.members-card-overlay-11 {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 41.9%;             /* 位于地图垂直方向 10% 处 */
+left: 12%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 18%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+/* 设置旋转角度 */
+transform: rotate(-4deg);
+transform-origin: center center;
+}
+
+.members-card-overlay-11 .members-card-bg11 {
+display: block;
+width: 100%;
+height: auto;
+}
+
+.members-card-overlay-11 .WANG_Guanzhe {
+position: absolute;   /* 相对于 card-1 容器定位 */
+top: 15%;             /* 根据你 SVG 卡片头像框的具体位置微调此百分比 */
+left: 15%;            /* 根据你 SVG 卡片头像框的具体位置微调此百分比 */
+width: 68%;           /* 头像相对卡片尺寸的占比 */
+height: auto;
+pointer-events: none; /* 避免遮挡卡片点击事件 */
+z-index: 1;           /* 位于卡片底图上方 */
+}
+
+.members-card-overlay-11 .WANG_Guanzhe-text {
+position: absolute;
+bottom: 19%;          
+left: 12%;           
+color: #243A4F;
+font-family: "Kaisei Tokumin";
+font-size: 24px;
+font-style: normal;
+font-weight: 700;
+line-height: 25px; 
+letter-spacing: -0.364px;
+width: 60.884px;
+height: 29.342px;
+transform: rotate(2deg);        
+z-index: 2;          
+}
+
+/* members/card.svg  */
+.members-card-overlay-12 {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 42.3%;             /* 位于地图垂直方向 10% 处 */
+left: 42.7%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 19%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+/* 设置旋转角度 */
+transform: rotate(8deg);
+transform-origin: center center;
+}
+
+.members-card-overlay-12 .members-card-bg12 {
+display: block;
+width: 100%;
+height: auto;
+}
+
+.members-card-overlay-12 .WANG_Qingyu {
+position: absolute;   /* 相对于 card-1 容器定位 */
+top: 15%;             /* 根据你 SVG 卡片头像框的具体位置微调此百分比 */
+left: 13%;            /* 根据你 SVG 卡片头像框的具体位置微调此百分比 */
+width: 70%;           /* 头像相对卡片尺寸的占比 */
+height: auto;
+pointer-events: none; /* 避免遮挡卡片点击事件 */
+z-index: 1;           /* 位于卡片底图上方 */
+/* 设置旋转角度 */
+transform: rotate(-8deg);
+transform-origin: center center;
+}
+
+.members-card-overlay-12 .WANG_Qingyu-text {
+position: absolute;
+bottom: 18%;          
+left: 18%;           
+color: #243A4F;
+font-family: "Kaisei Tokumin";
+font-size: 24px;
+font-style: normal;
+font-weight: 700;
+line-height: 25px; 
+letter-spacing: -0.364px;
+width: 60.884px;
+height: 29.342px;
+transform: rotate(-4.138deg);        
+z-index: 2;          
+}
+
+/* members/card.svg  */
+.members-card-overlay-13 {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 37.5%;             /* 位于地图垂直方向 10% 处 */
+left: 32%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 18%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+/* 设置旋转角度 */
+transform: rotate(4deg);
+transform-origin: center center;
+}
+
+.members-card-overlay-13 .members-card-bg13 {
+display: block;
+width: 100%;
+height: auto;
+}
+
+.members-card-overlay-13 .ZHANG_Ke {
+position: absolute;   /* 相对于 card-1 容器定位 */
+top: 15%;             /* 根据你 SVG 卡片头像框的具体位置微调此百分比 */
+left: 15%;            /* 根据你 SVG 卡片头像框的具体位置微调此百分比 */
+width: 68%;           /* 头像相对卡片尺寸的占比 */
+height: auto;
+pointer-events: none; /* 避免遮挡卡片点击事件 */
+z-index: 1;           /* 位于卡片底图上方 */
+}
+
+.members-card-overlay-13 .ZHANG_Ke-text {
+position: absolute;
+bottom: 19%;          
+left: 12%;           
+color: #243A4F;
+font-family: "Kaisei Tokumin";
+font-size: 24px;
+font-style: normal;
+font-weight: 700;
+line-height: 25px; 
+letter-spacing: -0.364px;
+width: 60.884px;
+height: 29.342px;
+transform: rotate(2deg);        
+z-index: 2;          
+}
+
+/* members/card.svg  */
+.members-card-overlay-14 {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 37.5%;             /* 位于地图垂直方向 10% 处 */
+right: 9%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 18%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+/* 设置旋转角度 */
+transform: rotate(6deg);
+transform-origin: center center;
+}
+
+.members-card-overlay-14 .members-card-bg14 {
+display: block;
+width: 100%;
+height: auto;
+}
+
+.members-card-overlay-14 .ZHANG_Jingxuan {
+position: absolute;   /* 相对于 card-1 容器定位 */
+top: 10%;             /* 根据你 SVG 卡片头像框的具体位置微调此百分比 */
+left: 11%;            /* 根据你 SVG 卡片头像框的具体位置微调此百分比 */
+width: 75%;           /* 头像相对卡片尺寸的占比 */
+height: auto;
+pointer-events: none; /* 避免遮挡卡片点击事件 */
+z-index: 1;           /* 位于卡片底图上方 */
+}
+
+.members-card-overlay-14 .ZHANG_Jingxuan-text {
+position: absolute;
+bottom: 19%;          
+left: 12%;           
+color: #243A4F;
+font-family: "Kaisei Tokumin";
+font-size: 24px;
+font-style: normal;
+font-weight: 700;
+line-height: 25px; 
+letter-spacing: -0.364px;
+width: 60.884px;
+height: 29.342px;
+transform: rotate(2deg);        
+z-index: 2;          
+}
+
+/* members/card.svg  */
+.members-card-overlay-15 {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 42.2%;             /* 位于地图垂直方向 10% 处 */
+right: 10%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 18%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+/* 设置旋转角度 */
+transform: rotate(4deg);
+transform-origin: center center;
+}
+
+.members-card-overlay-15 .members-card-bg15 {
+display: block;
+width: 100%;
+height: auto;
+}
+
+.members-card-overlay-15 .ZHANG_Xiwen {
+position: absolute;   /* 相对于 card-1 容器定位 */
+top: 19%;             /* 根据你 SVG 卡片头像框的具体位置微调此百分比 */
+left: 19%;            /* 根据你 SVG 卡片头像框的具体位置微调此百分比 */
+width: 60%;           /* 头像相对卡片尺寸的占比 */
+height: auto;
+pointer-events: none; /* 避免遮挡卡片点击事件 */
+z-index: 1;           /* 位于卡片底图上方 */
+}
+
+.members-card-overlay-15 .ZHANG_Xiwen-text {
+position: absolute;
+bottom: 19%;          
+left: 12%;           
+color: #243A4F;
+font-family: "Kaisei Tokumin";
+font-size: 24px;
+font-style: normal;
+font-weight: 700;
+line-height: 25px; 
+letter-spacing: -0.364px;
+width: 60.884px;
+height: 29.342px;
+transform: rotate(2deg);        
+z-index: 2;          
+}
+
+/* student_leaders/title.svg */
+.studentleaders-title-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 49.7%;             /* 位于地图垂直方向 10% 处 */
+right: 32.5%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 34%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+}
+
+/* student_leaders/card.svg  */
+.ZHENG_Keshuo-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 51.9%;             /* 位于地图垂直方向 10% 处 */
+left: 23%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 16%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+}
+
+/* student_leaders/card.svg  */
+.LI_Meihan-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 52%;             /* 位于地图垂直方向 10% 处 */
+left: 42%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 16%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+}
+
+/* student_leaders/card.svg  */
+.QU_Jiayue-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 51.9%;             /* 位于地图垂直方向 10% 处 */
+left: 62%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 16%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+}
+
+/*advisors/title.svg */
+.advisors-title-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 59%;             /* 位于地图垂直方向 10% 处 */
+right: 38%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 23%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+}
+
+/* advisors/card.svg  */
+.Ettrium_Han-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 60.8%;             /* 位于地图垂直方向 10% 处 */
+left: 19%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 15%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+}
+
+/* advisors/card.svg  */
+.CHEN_Yanhao-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 59.8%;             /* 位于地图垂直方向 10% 处 */
+left: 40%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 20%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+}
+
+/* advisors/card.svg  */
+.LIAO_Yijie-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 61.2%;             /* 位于地图垂直方向 10% 处 */
+left: 65%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 13%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+}
+
+/* advisors/card.svg  */
+.PENG_Jiaxuan-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 65.9%;             /* 位于地图垂直方向 10% 处 */
+left: 18.8%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 15%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+}
+
+/* advisors/card.svg  */
+.SHEN_Ruichen-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 65.9%;             /* 位于地图垂直方向 10% 处 */
+left: 42.5%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 15%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+}
+
+/* advisors/card.svg  */
+.LIN_Nanqin-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 65.7%;             /* 位于地图垂直方向 10% 处 */
+left: 65%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 15%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+}
+
+/* advisors/card.svg  */
+.Enduo_Kim-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 71%;             /* 位于地图垂直方向 10% 处 */
+left: 20%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 15%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+}
+
+/* advisors/card.svg  */
+.GUO_Yanlinxing-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 70.9%;             /* 位于地图垂直方向 10% 处 */
+left: 42%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 15%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+}
+
+/* advisors/card.svg  */
+.TANG_Ziyan-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 70.7%;             /* 位于地图垂直方向 10% 处 */
+left: 64%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 16%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+}
+
+/*instructors/title.svg */
+.instructors-title-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 77.5%;             /* 位于地图垂直方向 10% 处 */
+right: 36.5%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 25%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+}
+
+/* instructors/card.svg  */
+.YANG_Nan-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 79.7%;             /* 位于地图垂直方向 10% 处 */
+left: 43.5%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 15%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+}
+
+/*PIs/title.svg */
+.PIs-title-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 86%;             /* 位于地图垂直方向 10% 处 */
+right: 26%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 48%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+}
+
+/* PIs/card.svg  */
+.HONG_Wenjing-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 88.5%;             /* 位于地图垂直方向 10% 处 */
+left: 30%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 15%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+}
+
+/* PIs/card.svg  */
+.ZHANG_Aihui-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 88.6%;             /* 位于地图垂直方向 10% 处 */
+left: 53%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 15%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+}
+
+/* PIs/card.svg  */
+.LING_Chen-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 93.5%;             /* 位于地图垂直方向 10% 处 */
+left: 20%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 15%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+}
+
+/* PIs/card.svg  */
+.CHEN_Junhong-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 93.6%;             /* 位于地图垂直方向 10% 处 */
+left: 42%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 15%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+}
+
+/* PIs/card.svg  */
+.HUANG_Jiacheng-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 93.5%;             /* 位于地图垂直方向 10% 处 */
+left: 64%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 15%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+}
+
+/* members/tape.svg */
+.tape1-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 26.2%;             /* 位于地图垂直方向 10% 处 */
+left: 19%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 19%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+opacity: 0.8;        /* 透明度 */
+/* 设置旋转角度 */
+transform: rotate(-58deg);
+transform-origin: center center;
+}
+
+/* members/tape.svg */
+.tape2-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 26.7%;             /* 位于地图垂直方向 10% 处 */
+right: 17%;           /* 位于地图水平方向 20% 处 */
+z-index: 1;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 21%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+opacity: 0.8;        /* 透明度 */
+/* 设置旋转角度 */
+transform: rotate(0deg);
+}
+
+/* members/tape.svg */
+.tape3-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 31.5%;             /* 位于地图垂直方向 10% 处 */
+right: 42%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 15%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+opacity: 0.8;        /* 透明度 */
+/* 设置旋转角度 */
+transform: rotate(0deg);
+transform-origin: center center;
+white-space: normal;
+}
+
+/* members/tape.svg */
+.tape4-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 34.4%;             /* 位于地图垂直方向 10% 处 */
+right: 22%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 13%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+opacity: 0.8;        /* 透明度 */
+/* 设置旋转角度 */
+transform: rotate(-40deg);
+transform-origin: center center;
+}
+
+/* members/tape.svg */
+.tape5-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 41.5%;             /* 位于地图垂直方向 10% 处 */
+left: 5.2%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 11%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+opacity: 0.8;        /* 透明度 */
+/* 设置旋转角度 */
+transform: rotate(-60deg);
+transform-origin: center center;
+}
+
+/* members/tape.svg */
+.tape6-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 42.5%;             /* 位于地图垂直方向 10% 处 */
+left: 55%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 13%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+opacity: 0.8;        /* 透明度 */
+/* 设置旋转角度 */
+transform: rotate(45deg);
+transform-origin: center center;
+}
+
+/* members/pin.svg */
+.pin1-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 40.75%;             /* 位于地图垂直方向 10% 处 */
+right: 24.1%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 25%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+/* 设置旋转角度 */
+transform: rotate(-17deg);
+transform-origin: center center;
+}
+
+/* members/pin.svg */
+.pin2-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 39.5%;             /* 位于地图垂直方向 10% 处 */
+left: 4.5%;           /* 位于地图水平方向 20% 处 */
+z-index: 2;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 25%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+/* 设置旋转角度 */
+transform: rotate(67deg);
+transform-origin: center center;
+}
+
+/* members/line.svg */
+.line1-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 24.3%;             /* 位于地图垂直方向 10% 处 */
+left: 20%;           /* 位于地图水平方向 20% 处 */
+z-index: 1;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 33%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+/* 设置旋转角度 */
+transform: rotate(0deg);
+transform-origin: center center;
+}
+
+/* members/line.svg */
+.line2-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 31%;             /* 位于地图垂直方向 10% 处 */
+left: 10%;           /* 位于地图水平方向 20% 处 */
+z-index: 1;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 33%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+/* 设置旋转角度 */
+transform: rotate(-25deg);
+transform-origin: center center;
+}
+
+/* members/line.svg */
+.line3-overlay {
+position: absolute;   /* 相对于 .map-container 定位 */
+top: 33.4%;             /* 位于地图垂直方向 10% 处 */
+left: 35%;           /* 位于地图水平方向 20% 处 */
+z-index: 1;           /* 置于底图与前景之间 */
+pointer-events: auto; /* 允许交互事件 */
+width: 33%;           /* 宽度占地图总宽的 30% */
+max-width: 1000px;     /* 大屏限制最大尺寸 */
+min-width: 100px;     /* 小屏保持可读性 */
+height: auto;         /* 保持原始宽高比例 */
+/* 设置旋转角度 */
+transform: rotate(40deg);
+transform-origin: center center;
+}
+
+/* title1 */
+.title1-text-overlay {
+position: absolute;
+top: 4.6%;
+left: 6%;
+z-index: 2;
+color: #354453;
+font-family: "Kaisei Tokumin";
+font-size: 72px;
+font-style: normal;
+font-weight: 800;
+line-height: 54.66px; 
+letter-spacing: -0.364px;
+pointer-events: auto;
+}
+
+/* title2 */
+.title2-text-overlay {
+position: absolute;
+top: 5.8%;
+left: 6%;
+z-index: 2;
+color: rgba(60, 69, 77, 0.68);
+font-family: Inter;
+font-size: 28px;
+font-style: normal;
+font-weight: 300;
+line-height: 22.1px; 
+pointer-events: auto;
+}
+
+/* title3 */
+.title3-text-overlay {
+position: absolute;
+top: 6.6%;
+left: 6%;
+z-index: 2;
+color: #323B43;
+font-family: Inter;
+font-size: 30px;
+font-style: normal;
+font-weight: 300;
+line-height: 50px;
+width: 335px;
+pointer-events: auto;
+white-space: nowrap;
+}
+
+/* video */
+.video-text-overlay {
+position: absolute;
+top: 10.5%;
+left: 14%;
+z-index: 2;
+color: #354453;
+text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+font-family: "Kaisei Tokumin";
+font-size: 56px;
+font-style: normal;
+font-weight: 800;
+line-height: 74px; 
+letter-spacing: -1.04px;
+transform: rotate(-12.415deg);
+pointer-events: auto;
+white-space: pre-line;
+}
+
+/* ARCHIVE 01 */
+.archive1-text-overlay {
+position: absolute;
+top: 20.3%;
+left: 48%;
+z-index: 2;
+color: #206E63;
+text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+font-family: "Kite One", sans-serif;
+font-size: 32px;
+font-style: normal;
+font-weight: 400;
+line-height: 74px;
+letter-spacing: -1.04px;
+pointer-events: auto;
+white-space: pre-line;
+}
+
+/* ARCHIVE 02 */
+.archive2-text-overlay {
+position: absolute;
+top: 48.8%;
+left: 45%;
+z-index: 2;
+color: #206E63;
+text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+font-family: "Kite One", sans-serif;
+font-size: 32px;
+font-style: normal;
+font-weight: 400;
+line-height: 74px;
+letter-spacing: -1.04px;
+pointer-events: auto;
+white-space: pre-line;
+}
+
+/* ARCHIVE 03 */
+.archive3-text-overlay {
+position: absolute;
+top: 58.1%;
+left: 45%;
+z-index: 2;
+color: #206E63;
+text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+font-family: "Kite One", sans-serif;
+font-size: 32px;
+font-style: normal;
+font-weight: 400;
+line-height: 74px;
+letter-spacing: -1.04px;
+pointer-events: auto;
+white-space: pre-line;
+}
+
+/* ARCHIVE 04 */
+.archive4-text-overlay {
+position: absolute;
+top: 76.6%;
+left: 45.5%;
+z-index: 2;
+color: #206E63;
+text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+font-family: "Kite One", sans-serif;
+font-size: 32px;
+font-style: normal;
+font-weight: 400;
+line-height: 74px;
+letter-spacing: -1.04px;
+pointer-events: auto;
+white-space: pre-line;
+}
+
+/* ARCHIVE 05 */
+.archive5-text-overlay {
+position: absolute;
+top: 85.1%;
+left: 44%;
+z-index: 2;
+color: #206E63;
+text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+font-family: "Kite One", sans-serif;
+font-size: 32px;
+font-style: normal;
+font-weight: 400;
+line-height: 74px;
+letter-spacing: -1.04px;
+pointer-events: auto;
+white-space: pre-line;
+}
+
+/* Members */
+.members-text-overlay {
+position: absolute;
+top: 21.4%;
+left: 44.5%;
+z-index: 2;
+color: #354453;
+text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+font-family: "Kaisei Tokumin";
+font-size: 64px;
+font-style: normal;
+font-weight: 800;
+line-height: 74px; /* 205.556% */
+letter-spacing: -1.04px;
+pointer-events: auto;
+white-space: pre-line;
+}
+
+/* Student_Leader */
+.student_leader-text-overlay {
+position: absolute;
+top: 50.2%;
+left: 36.5%;
+z-index: 2;
+color: #354453;
+text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+font-family: "Kaisei Tokumin";
+font-size: 64px;
+font-style: normal;
+font-weight: 800;
+line-height: 74px; /* 205.556% */
+letter-spacing: -1.04px;
+pointer-events: auto;
+white-space: pre-line;
+}
+
+/* Advisors */
+.advisors-text-overlay {
+position: absolute;
+top: 59.4%;
+left: 42.5%;
+z-index: 2;
+color: #354453;
+text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+font-family: "Kaisei Tokumin";
+font-size: 64px;
+font-style: normal;
+font-weight: 800;
+line-height: 74px; /* 205.556% */
+letter-spacing: -1.04px;
+pointer-events: auto;
+white-space: pre-line;
+}
+
+/* Instructors */
+.instructors-text-overlay {
+position: absolute;
+top: 77.8%;
+left: 41%;
+z-index: 2;
+color: #354453;
+text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+font-family: "Kaisei Tokumin";
+font-size: 64px;
+font-style: normal;
+font-weight: 800;
+line-height: 74px; /* 205.556% */
+letter-spacing: -1.04px;
+pointer-events: auto;
+white-space: pre-line;
+}
+
+/* PIs */
+.pis-text-overlay {
+position: absolute;
+top: 86.4%;
+left: 29.5%;
+z-index: 2;
+color: #354453;
+text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+font-family: "Kaisei Tokumin";
+font-size: 64px;
+font-style: normal;
+font-weight: 800;
+line-height: 74px; /* 205.556% */
+letter-spacing: -1.04px;
+pointer-events: auto;
+white-space: pre-line;
+}
+
+/* 前景网格图层：固定在视口顶层，不遮挡滚轮滑动 */
+.grid-container {
+position: fixed;
+inset: 0;
+width: 100vw;
+height: 100vh;
+z-index: 3;           /* 位于最顶层 */
+pointer-events: none; /* 确保鼠标滚轮穿透至页面正常滚动 */
+}
+
+#gridCanvas {
+width: 100%;
+height: 100%;
+display: block;
+}

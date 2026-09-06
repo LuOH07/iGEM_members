@@ -1,0 +1,270 @@
+/* STREAMING_CHUNK:Configuring base styles and typography... */
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=Inter:wght@400;600;700&display=swap');
+
+/* 固定在顶部的页眉 */
+header {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 80px;
+background-color: #0A1C37;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0 3%;
+z-index: 100;
+box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* 左侧 Logo 尺寸与间距 */
+.logo {
+height: 48px;
+width: auto;
+object-fit: contain;
+margin-left: 8vw;
+}
+
+/* STREAMING_CHUNK:Styling header and navigation bar... /
+/ 右侧导航菜单容器 */
+nav {
+display: flex;
+align-items: center;
+height: 100%;
+margin-right: 15vw;
+}
+
+/* 导航单项包装容器 */
+.nav-item {
+position: relative;
+height: 100%;
+display: flex;
+align-items: center;
+}
+
+/* 导航链接基本样式 */
+nav a.nav-link {
+font-family: 'DM Mono', monospace;
+font-weight: 300;
+color: #8c9fae;
+text-decoration: none;
+font-size: 15px;
+letter-spacing: 1.2px;
+text-transform: uppercase;
+height: 100%;
+padding: 0 16px;
+display: flex;
+align-items: center;
+justify-content: center;
+background-color: transparent;
+transition: color 0.3s ease, background-color 0.3s ease;
+white-space: nowrap;
+}
+
+nav a.nav-link:hover,
+nav a.nav-link.active,
+.nav-item:hover > a.nav-link {
+color: #ffffff;
+background-color: #132D55;
+}
+
+/* STREAMING_CHUNK:Configuring dropdown menu behavior and appearance... /
+/ 下拉分栏菜单容器 */
+.dropdown-menu {
+position: absolute;
+top: 100%;
+left: 50%;
+transform: translateX(-50%) translateY(6px);
+min-width: 170px;
+background-color: #C7D8E9;
+border-radius: 0 0 6px 6px;
+box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+overflow: hidden;
+opacity: 0;
+visibility: hidden;
+transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+z-index: 110;
+}
+
+.nav-item:hover .dropdown-menu {
+opacity: 1;
+visibility: visible;
+transform: translateX(-50%) translateY(0);
+}
+
+/* 下拉子菜单项（无横线分割，多行居中对齐） */
+.dropdown-item {
+position: relative;
+display: flex;
+align-items: center;
+justify-content: center;
+text-align: center;
+padding: 12px 18px;
+color: #162741;
+text-decoration: none;
+font-family: 'DM Mono', monospace;
+font-weight: 400;
+font-size: 13.5px;
+line-height: 1.35;
+letter-spacing: 0px;
+text-transform: capitalize;
+background-color: #C7D8E9;
+transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-item::before {
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+width: 4px;
+height: 100%;
+background-color: #132D55;
+opacity: 0;
+transition: opacity 0.2s ease;
+}
+
+.dropdown-item:hover {
+background-color: #E2EBF4;
+color: #0b1c36;
+}
+
+.dropdown-item:hover::before {
+opacity: 1;
+}
+
+/* STREAMING_CHUNK:Styling footer container without top divider line... /
+/ 页脚全局容器（已移除原先绘制顶部白线的 footer::before 伪元素） */
+footer {
+background-color: #0A1B37;
+padding: 30px 6% 35px 6%;
+width: 100%;
+box-sizing: border-box;
+position: relative;
+z-index: 40;
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.footer-container {
+max-width: 1250px;
+margin: 0 auto;
+display: flex;
+flex-direction: column;
+}
+
+/* STREAMING_CHUNK:Arranging footer logo and middle content areas... /
+/ 第一行：Logo 区域 */
+.footer-logos-container {
+display: flex;
+align-items: center;
+gap: 45px;
+margin-top: 15px;
+margin-bottom: 30px;
+}
+
+.footer-logo {
+height: 72px;
+width: auto;
+object-fit: contain;
+}
+
+/* 中间行：地址与社交图标容器 */
+.footer-middle-container {
+display: flex;
+justify-content: space-between;
+align-items: flex-end;
+margin-bottom: 25px;
+}
+
+.footer-address {
+color: #ffffff;
+font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+font-size: 15px;
+font-weight: 700;
+line-height: 22px;
+letter-spacing: 0.3px;
+text-transform: none;
+}
+
+.footer-address p {
+margin: 0;
+}
+
+/* STREAMING_CHUNK:Styling social icon buttons and interactive states... /
+/ 5 个并排社交图标预留框 */
+.footer-social-container {
+display: flex;
+gap: 12px;
+align-items: center;
+}
+
+.social-icon-placeholder {
+width: 44px;
+height: 44px;
+background-color: #BDD0E3;
+border: 1px solid #92AFD6;
+color: #4275B3;
+fill: #4275B3;
+border-radius: 8px;
+display: flex;
+align-items: center;
+justify-content: center;
+box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.6), 0 2px 4px rgba(0, 0, 0, 0.05);
+cursor: pointer;
+overflow: hidden;
+transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease;
+}
+
+.social-icon-placeholder:hover {
+transform: translateY(-2px);
+opacity: 0.9;
+}
+
+/* 社交内部小图标尺寸 */
+.social-icon-img {
+width: 26px;
+height: 26px;
+object-fit: contain;
+pointer-events: none;
+}
+
+/* STREAMING_CHUNK:Finalizing bottom copyright row and contact button... /
+/ 底部行：版权文本与联系按钮 */
+.footer-bottom-container {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-top: 5px;
+}
+
+/* 版权文本样式：微调字号增加可读性 */
+.footer-copyright {
+font-family: 'DM Mono', monospace;
+font-size: 11px;
+font-weight: 400;
+color: #ffffff;
+letter-spacing: 0.6px;
+text-transform: capitalize;
+display: flex;
+gap: 35px;
+}
+
+/* Contact Us 按钮样式：字号与加粗调优 */
+.footer-contact-btn {
+font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+background-color: #4C6E8F;
+color: #FFFFFF;
+text-decoration: none;
+font-size: 15px;
+font-weight: 700;
+letter-spacing: 0.5px;
+padding: 10px 32px;
+border-radius: 22px;
+box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
+transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.footer-contact-btn:hover {
+background-color: #132437;
+transform: translateY(-1px);
+}
