@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const headerHTML = `
     <header>
-        <img src="https://static.igem.wiki/teams/6059/wiki/members/sting.svg" alt="STING Logo" class="logo">
+        <img src="https://static.igem.wiki/teams/6059/wiki/head-foot/sting.svg" alt="STING Logo" class="logo">
         <nav>
             <!-- 1. HOME -->
             <div class="nav-item">
